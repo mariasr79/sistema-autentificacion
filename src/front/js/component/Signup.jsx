@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+const navigate = useNavigate ();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -17,7 +19,7 @@ const Signup = () => {
     const dataToSend = { email, password };
     
     try {
-        const response = await fetch ("https://verbose-goldfish-5gqvx4jr5xj9cp794-3001.app.github.dev/api/signup" , {
+        const response = await fetch ("https://potential-palm-tree-r4gjpvr6r4qq3g9v-3001.app.github.dev/api/signup" , {
             method:"POST",
             headers: {
                 "Content-Type": "application/json",
@@ -36,6 +38,7 @@ const Signup = () => {
     } catch (error) {
         console.error ("Error al realizar la solicitud")
     }
+navigate("/")
 };
 
 
