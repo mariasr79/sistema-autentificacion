@@ -19,7 +19,7 @@ const navigate = useNavigate ();
     const dataToSend = { email, password };
     
     try {
-        const response = await fetch ("https://potential-palm-tree-r4gjpvr6r4qq3g9v-3001.app.github.dev/api/signup" , {
+        const response = await fetch (process.env.BACKEND_URL + "/api/signup" , {
             method:"POST",
             headers: {
                 "Content-Type": "application/json",

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate(); 
@@ -11,12 +11,12 @@ const Login = () => {
     e.preventDefault(); 
 
     try {
-      const response = await fetch('https://potential-palm-tree-r4gjpvr6r4qq3g9v-3001.app.github.dev/api', { // Hacemos la solicitud al backend
+      const response = await fetch(process.env.BACKEND_URL + "/api/login", { // Hacemos la solicitud al backend
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }), 
+        body: JSON.stringify({ email, password }), 
       });
 
       if (!response.ok) { 
@@ -24,7 +24,7 @@ const Login = () => {
       }
 
       const data = await response.json(); 
-      localStorage.setItem('token', data.token); 
+      localStorage.setItem('token', data.acces_token); 
       navigate('/paginaprivada'); 
     } catch (error) {
       console.error('There was a problem with the fetch operation:', error); 
@@ -37,11 +37,11 @@ const Login = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Username:</label>
+          <label>Email:</label>
           <input
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)} 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} 
             required
           />
         </div>
