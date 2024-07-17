@@ -26,6 +26,7 @@ const Login = () => {
       const data = await response.json(); 
       localStorage.setItem('token', data.acces_token); 
       navigate('/paginaprivada'); 
+      window.location.reload();
     } catch (error) {
       console.error('There was a problem with the fetch operation:', error); 
       setError('Login failed. Please try again.'); 
