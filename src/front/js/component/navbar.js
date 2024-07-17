@@ -5,7 +5,7 @@ export const Navbar = () => {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 	useEffect(() => {
-		// Comprobamos si el token existe en localStorage al cargar la página
+		
 		if (localStorage.getItem("token")) {
 			setIsAuthenticated(true);
 		}
